@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Guests' comments";
+}
+<h2>
+    Guests' comments</h2>
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
+    <li class="active">Guests' comments</li>
+</ul>
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab-comments1" data-toggle="tab">Guests' comments [1] <i
+            class="icon-info-sign"></i></a></li>
+        <li><a href="#tab-comments2" data-toggle="tab">Guests' comments [2] <i class="icon-info-sign">
+        </i></a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab-comments1">
+            @{ Html.RenderPartial("Comments1"); }
+        </div>
+        <div class="tab-pane" id="tab-comments2">
+            @{ Html.RenderPartial("Comments2"); }
+        </div>
+    </div>
+</div>

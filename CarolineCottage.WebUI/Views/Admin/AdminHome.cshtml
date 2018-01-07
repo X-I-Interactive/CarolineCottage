@@ -1,0 +1,23 @@
+﻿@model List<BookingView>
+@using CarolineCottage.Domain
+
+    <div>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#tab-calendar" aria-controls="tab-calendar" role="tab" data-toggle="tab">Manage calendar</a>
+            </li>
+            <li role="presentation">
+                <a href="#tab-user-management" aria-controls="tab-user-management" role="tab" data-toggle="tab">User management</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tab-calendar">
+                @{ Html.RenderPartial("ManageCalender", Model); }
+            </div>
+            <div role="tabpanel" class="tab-pane" id="tab-user-management">
+                @{ Html.RenderPartial("ManageUsers"); }
+            </div>
+        </div>
+    </div>
+

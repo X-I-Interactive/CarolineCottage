@@ -1,0 +1,29 @@
+﻿@model BookingView
+@using CarolineCottage.Domain
+@{
+    String shortBreak = Model.AvailableForShortBreaks ? "Yes" : "No";
+    String comment = String.IsNullOrEmpty(Model.Comment) ? "-" : Model.Comment;
+    String baseID = "WeekID_" + Model.BookingID.ToString();
+}
+<tr id="@baseID">
+    <td>
+        <a href="#edit" class="EditLine">
+            &nbsp;<span class="glyphicon glyphicon-pencil" aria-hidden="true" title="Edit this line"></span>
+        </a>
+        @if (!Model.IsLastRow)
+        {
+            <a href="#copy" class="CopyFromAbove">
+                &nbsp;<span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true" title="copy to line below"></span>
+            </a>
+        }
+        &nbsp;
+        @Model.WeekStartDate.ToString("d MMM yyyy")
+        
+    </td>
+    <td class="BookingStatus">@Model.BookingStatus.ToString()</td>
+    <td class="WeekPrice text-right">@String.Format("{0:£#,##0}", Model.WeekPrice)</td>
+    <td class="text-right">@String.Format("{0:£#,##0}", ((Model.WeekPrice / 3) / 10) * 10)</td>
+    <td>@shortBreak</td>
+    <td class="BookingComment">@comment</td>
+</tr>
+

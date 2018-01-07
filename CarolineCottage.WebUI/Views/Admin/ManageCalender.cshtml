@@ -1,0 +1,43 @@
+﻿@model List<BookingView>
+@using CarolineCottage.Domain
+
+<h4>Manage availability calendar</h4>
+
+@* booking headings *@
+
+<table class="table table-condensed table-hover" id="editBooksTable">
+    <thead>
+        <tr>
+            <th>Week</th>
+            <th>Booked</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Deposit</th>
+            <th>Short lets<br /><i>Not used</i></th>
+            <th>Comment<br /><i>Not used</i></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            Html.RenderPartial("BookingRow", booking);
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="editBookingModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Caroline Cottage booking</h4>
+            </div>
+            <div class="modal-body">
+                <div id="editBookingModalContent">
+
+                </div>
+            </div>
+
+            </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

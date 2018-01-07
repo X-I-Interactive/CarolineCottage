@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "About Mousehole";
+}
+
+<h2>Mousehole</h2>
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
+    <li class="active">About Mousehole</li>
+</ul>
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#tab-mousehole" aria-controls="tab-mousehole" role="tab" data-toggle="tab">Mousehole <span class="glyphicon glyphicon-book" aria-hidden="true"></span> </a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-pics-harbour" aria-controls="tab-pics-harbour" role="tab" data-toggle="tab">The harbour <span class="glyphicon glyphicon-camera"></span></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-pics-mousehole" aria-controls="tab-pics-mousehole" role="tab" data-toggle="tab">Images of Mousehole <span class="glyphicon glyphicon-camera"></span></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-eat-shop" aria-controls="tab-eat-shop" role="tab" data-toggle="tab">Restaurants and shops <span class="glyphicon glyphicon-book"></span></a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-mousehole">
+            @{ Html.RenderPartial("MouseholeInformation"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-pics-harbour">
+            @{ Html.RenderPartial("HarbourPics"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-pics-mousehole">
+            @{ Html.RenderPartial("MouseholePics"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-eat-shop">
+            @{ Html.RenderPartial("MouseholeEatShop"); }
+        </div>
+    </div>
+
+</div>

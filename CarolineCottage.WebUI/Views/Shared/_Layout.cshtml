@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>@ViewBag.Title</title>
+
+
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/Utilities.js"></script>
+
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+
+    
+
+</head>
+<body>
+    <div class="container">
+        <img src="../../Content/images/title.gif" alt="Caroline Cottage" />
+        @RenderBody()
+        <footer>
+            <hr />
+            <p>
+                © 200<a href="~/admin">7</a>,@DateTime.Now.Year.ToString() Pugwash Worldwide Communications
+            </p>
+        </footer>
+    </div>
+
+</body>
+</html>

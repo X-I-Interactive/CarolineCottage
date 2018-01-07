@@ -1,0 +1,269 @@
+﻿@model UserView
+@using CarolineCottage.Domain
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+<div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Caroline Cottage admin login</h4>
+            </div>
+
+
+
+            @using (Ajax.BeginForm("Login", "Admin", null,
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "UpdateAfterLogin"  // JavaScript function to close the form after save and add the selected person to the display
+            }
+            , new { id = "AdminLoginForm" }
+            ))
+            {
+                <div class="modal-body">
+                    <div id="loginError">
+                        <span class="label label-warning">Error</span> username/password not recognised
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="control-group">
+                            @Html.LabelFor(m => m.Name, new { @class = "editor-label control-label" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            <div class="editor-field controls">
+                                @Html.TextBoxFor(m => m.Name,
+                                new { @class = "input-large" })
+                            </div>
+                        </div>
+                        <div class="control-group">
+
+                            @Html.LabelFor(m => m.Password, new { @class = "editor-label control-label" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            <div class="editor-field controls">
+                                @Html.PasswordFor(m => m.Password,
+                                new { @class = "input-large" })
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>    <!-- /.modal-footer -->
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
+    <li class="active">Website admin</li>
+</ul>
+
+<h2>CC website admin</h2>
+<div id="adminHome">
+
+</div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //  add ForceNumeric etc.
+        docReadyUtilityFunctions();
+
+        // Add a new user
+        $("#adminHome").on("click", "#addNewUser", function () {
+            LoadDisplayUserDetailsForEdit(0);
+        });
+
+        // Edit a user
+        $("#adminHome").on("click", "#editSelectedUser", function () {
+            LoadDisplayUserDetailsForEdit($('#selectedUserList').val());
+        });
+
+        $("#adminHome").on("change", "#selectedUserList", function () {
+            var userID = $('#selectedUserList').val();
+            $("#editSelectedUser").prop("disabled", userID == "");
+        });
+
+        // cancel booking edit
+        $("#adminHome").on("click", ".form-cancel", function () {
+            $("#EditBookingFormRow").remove();
+        });
+
+        $("#loginError").hide();
+        $('#loginModal').modal({ backdrop: 'static' });
+
+        // cancel edit user
+        $("#adminHome").on("click", "#closeEditUserDetails", function () {
+            CleanUserDetailsScreen();
+        });
+
+        $("#adminHome").on("click", ".EditLine", function () {
+            EditBookingLine($(this).parents("tr").attr("id"));
+        });
+
+        $("#adminHome").on("click", ".CopyFromAbove", function () {
+            var currentLineID = $(this).parents("tr").attr("id");
+            if (currentLineID != $('#editBooksTable tr:last').attr('id'))
+            {
+                CopyCurrentBookingLineToNext(currentLineID);
+            }
+
+
+        });
+
+    });
+
+    // end of document ready
+
+    function UpdateAfterLogin(jsonReturn) {
+
+        if (jsonReturn.success) {
+
+            var jqxhr1 = $.ajax({ type: 'POST', url: "/Admin/AdminView" });
+            $.when(jqxhr1).done(function (responseDocument, textStatus, jqXHR) {
+                if (textStatus != "success") {
+                    alert("Error setting admin screen");
+                    return false;
+                }
+                $("#adminHome").html(responseDocument);
+                $("#editSelectedUser").prop("disabled", true);
+                //  load existing user list
+                LoadExistingUserList();
+            });
+
+            //  clear login details
+            $("#Name").val("");
+            $("#Password").val("");
+            $("#loginModal").modal("hide");
+            $("#loginError").hide();
+
+            return false;
+        }
+
+        $("#loginError").show();
+        return false;
+    }
+
+
+    function LoadExistingUserList() {
+        var jqxhr1 = $.ajax({ type: 'POST', url: "/Admin/LoadUserList" });
+        $.when(jqxhr1).done(function (userList, textStatus, jqXHR) {
+            var thisCodeList = $('#selectedUserList');
+            thisCodeList.empty();
+            if (userList.length == 0) {
+                thisCodeList.append($('<option/>', { value: "", text: "No users" }))
+            } else {
+                thisCodeList.append($('<option/>', { value: "", text: "Select a user" }))
+                $.each(userList, function (index, user) {
+                    thisCodeList.append($('<option/>', {
+                        value: user.UserID,
+                        text: user.Name
+                    }))  // $ end, append end
+                })  // each end
+            }
+        });
+    }
+
+    function LoadDisplayUserDetailsForEdit(userID) {
+        // call the controller to return the partial view
+
+        $.ajax({
+            type: 'POST',
+            url: "/Admin/LoadUserDetails",
+            cache: false,
+            data: {
+                userID: userID
+            },
+            success: function (html) {
+                $("#EditUserDetails").html(html);
+                var thisForm = $('#EditUserForm');
+                thisForm.removeData("validator");
+                thisForm.removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse(thisForm);
+                //SetLockedControls(true);
+            }
+        });
+    }
+
+    function UpdateAfterEditUser(saveStatus) {
+        alert(saveStatus.saved);
+        CleanUserDetailsScreen();
+    }
+
+
+    function CleanUserDetailsScreen() {
+        $("#EditUserDetails").html("");
+    }
+
+    function EditBookingLine(bookingLineID)
+    {
+        // get line as form then display as extra row
+
+        var jqxhr1 = $.ajax({
+            type: 'POST', url: "/Admin/GetBookingRow", data: { bookingLineID: bookingLineID }
+        });
+        $.when(jqxhr1).done(function (bookingLine, textStatus, jqXHR) {
+            if (textStatus != "success") {
+                alert("Error getting booking line");
+                return false;
+            }
+            //$("#editBookingModalContent").html(bookingLine);
+            $("#" + bookingLineID).after(bookingLine);
+            var thisForm = $('#EditBookingForm');
+            thisForm.removeData("validator");
+            thisForm.removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse(thisForm);
+
+            $("#WeekPrice").ForceNumericOnly();
+
+        });
+    }
+
+    function UpdateAfterEditBooking(rowHTML)
+    {
+       $("#EditBookingFormRow").remove();
+        if (rowHTML == null)
+        {
+            alert("Error saving calendar line");
+            return false;
+        }
+        ReplaceBookingLineRow(rowHTML);
+        return false;
+    }
+
+    function CopyCurrentBookingLineToNext(currentLineID) {
+        var jqxhr1 = $.ajax({
+            type: 'POST', url: "/Admin/CopyCurrentBookingLineToNext", data: { currentLineID: currentLineID }
+        });
+
+        $.when(jqxhr1).done(function (rowHTML, textStatus, jqXHR) {
+            if (textStatus != "success") {
+                alert("Error updating booking line");
+                return false;
+            }                        
+            if (rowHTML != null) {
+                ReplaceBookingLineRow(rowHTML);
+            }            
+            return false;
+        });
+    }
+
+
+    function ReplaceBookingLineRow(rowHTML)
+    {
+        var startPosn = rowHTML.indexOf('WeekID_');
+        var endPosn = rowHTML.indexOf('"', startPosn);
+        var rowID = rowHTML.substring(startPosn, endPosn);
+        //  get bookline line ID from rowHTML and replace
+        $("tr#" + rowID).replaceWith(rowHTML);        
+    }
+
+</script>
+

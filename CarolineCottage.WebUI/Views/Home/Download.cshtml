@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Download";
+}
+<h2>
+    Download</h2>
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
+    <li class="active">Download</li>
+</ul>
+<div class="row">
+    <div class="col-md-5">
+        <ul>
+            <li><a href="@Url.Content("~/Content/local/CC_map3.pdf")" target="_blank">Download
+                our map</a></li>
+            <li><a href="@Url.Content("~/Content/local/CC_booking_form.pdf")" target="_blank">Download
+                our booking form</a></li>
+            <li><a href="@Url.Content("~/Content/local/CC_Leaflet.pdf")" target="_blank"">Download
+                our brochure</a></li>
+        </ul>
+    </div>
+    <div class="col-md-7">
+        <div class="container">
+            <img src="@Url.Content("~/Content/images/harbour10.jpg")"  alt="Mousehole harbour" />
+        </div>
+    </div>
+</div>

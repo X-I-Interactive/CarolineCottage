@@ -1,0 +1,51 @@
+﻿@model BookingView
+@using CarolineCottage.Domain
+@using CarolineCottage.WebUI.Models
+
+<tr id="EditBookingFormRow">
+    <td colspan="0">
+        @using (Ajax.BeginForm("SaveBooking", "Admin", null,
+                                                                    new AjaxOptions
+                                                                    {
+                                                                        HttpMethod = "POST",
+                                                                        OnSuccess = "UpdateAfterEditBooking"  // JavaScript function to close the form after save and aupdate the booking on the display
+                                                                    }
+                                                                    , new { id = "EditBookingForm" }
+                                                                    ))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <h4>Booking for week beginning @Model.WeekStartDate.ToShortDateString()</h4>
+                @Html.HiddenFor(x => x.BookingID)
+                @Html.HiddenFor(x => x.WeekStartDate)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WeekPrice, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.WeekPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.WeekPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AvailableForShortBreaks, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.CheckBoxFor(m => m.AvailableForShortBreaks)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.BookingStatus, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(m => m.BookingStatus, AdministrationHelpers.GetBookingStates())
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(m => m.Comment)
+                    </div>
+                </div>
+                <button type="button" class="btn btn-default form-cancel">Discard</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>            
+        }
+    </td>
+</tr>

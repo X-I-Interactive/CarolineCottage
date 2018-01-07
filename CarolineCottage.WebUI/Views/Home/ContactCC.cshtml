@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Contact us";
+}
+@model CC.WebUI.Controllers.HomeController.ContactViewModel
+<h2>
+    Contact us</h2>
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
+    <li class="active">Contact us</li>
+</ul>
+@using (Html.BeginForm()) {
+    <p>Phone us on <em>01865 727423</em> or <em>07900 677588</em> Caroline Cottage.</p>
+    <p>Please use the form below to contact us about Caroline Cottage.</p>
+    <div class="form-horizontal">
+        <fieldset>
+            <legend>Contact Caroline Cottage</legend>
+            <div class="control-group">
+                @Html.ValidationMessageFor(model => model.From)
+                @Html.LabelFor(model => model.From)
+                <div class="editor-field controls">
+                    @Html.TextBoxFor(
+                        model => model.From,
+                        new { @class = "input-large" }
+                    )
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.ValidationMessageFor(model => model.Subject)
+                @Html.LabelFor(model => model.Subject)
+                <div class="editor-field controls">
+                    @Html.TextBoxFor(
+                        model => model.Subject,
+                        new { @class = "input-xlarge" }
+                    )
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.ValidationMessageFor(model => model.Message)
+                @Html.LabelFor(model => model.Message)
+                <div class="editor-field controls">
+                    @Html.TextAreaFor(
+                        model => model.Message,
+                        new { @rows = "6", @class = "input-xxlarge" }
+                    )
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+        </fieldset>
+    </div>
+}

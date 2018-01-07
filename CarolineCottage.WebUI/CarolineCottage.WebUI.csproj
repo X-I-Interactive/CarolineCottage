@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{103F29DC-DF7E-4DB9-AA04-0FDDD6145D5B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CarolineCottage.WebUI</RootNamespace>
+    <AssemblyName>CarolineCottage.WebUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionFilters\CustomAuthorisationAttribute.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdministrationHelpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images3\024 %28640x480%29.jpg" />
+    <Content Include="Content\images3\100710 152.jpg" />
+    <Content Include="Content\images3\100710 177.jpg" />
+    <Content Include="Content\images3\110720 064.jpg" />
+    <Content Include="Content\images3\110720 071.jpg" />
+    <Content Include="Content\images3\111022 026 %28480x640%29.jpg" />
+    <Content Include="Content\images3\111022 028 %28640x480%29.jpg" />
+    <Content Include="Content\images3\111022 029 %28480x640%29.jpg" />
+    <Content Include="Content\images3\111022 030 %28640x480%29.jpg" />
+    <Content Include="Content\images3\111022 032 %28640x480%29.jpg" />
+    <Content Include="Content\images3\111022 033 %28640x480%29.jpg" />
+    <Content Include="Content\images3\IMG_1641 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1653 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1669 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1680 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1689 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1694 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1719 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1723 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1727 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1730 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1732 %28427x640%29.jpg" />
+    <Content Include="Content\images3\IMG_1734 %28427x640%29.jpg" />
+    <Content Include="Content\images3\IMG_1738 %28427x640%29.jpg" />
+    <Content Include="Content\images3\IMG_1740 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1756 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1768 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1778 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1788 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1794 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1816 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1821 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1822 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1824 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1836 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1854 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1874 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1886 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1894 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_1913 %28640x427%29.jpg" />
+    <Content Include="Content\images\back1.jpg" />
+    <Content Include="Content\images\back2.jpg" />
+    <Content Include="Content\images\back3.jpg" />
+    <Content Include="Content\images\back4.jpg" />
+    <Content Include="Content\images\blank.gif" />
+    <Content Include="Content\images\cottage01.jpg" />
+    <Content Include="Content\images\cottage02.jpg" />
+    <Content Include="Content\images\cottage03.jpg" />
+    <Content Include="Content\images\cottage04.jpg" />
+    <Content Include="Content\images\cottage05.jpg" />
+    <Content Include="Content\images\cottage06.jpg" />
+    <Content Include="Content\images\cottage07.jpg" />
+    <Content Include="Content\images\cottage08.jpg" />
+    <Content Include="Content\images\cottage09.jpg" />
+    <Content Include="Content\images\cottage10.jpg" />
+    <Content Include="Content\images\cottage11.jpg" />
+    <Content Include="Content\images\curno1.jpg" />
+    <Content Include="Content\images\front.jpg" />
+    <Content Include="Content\images\front2.jpg" />
+    <Content Include="Content\images\front3.jpg" />
+    <Content Include="Content\images\front3a.jpg" />
+    <Content Include="Content\images\harbour1.jpg" />
+    <Content Include="Content\images\harbour10.jpg" />
+    <Content Include="Content\images\harbour2.jpg" />
+    <Content Include="Content\images\harbour3.jpg" />
+    <Content Include="Content\images\harbour4.jpg" />
+    <Content Include="Content\images\harbour5.jpg" />
+    <Content Include="Content\images\harbour6.jpg" />
+    <Content Include="Content\images\harbour7.jpg" />
+    <Content Include="Content\images\harbour8.jpg" />
+    <Content Include="Content\images\harbour9.jpg" />
+    <Content Include="Content\images\harboura.jpg" />
+    <Content Include="Content\images\lamorna1.jpg" />
+    <Content Include="Content\images\mount1.jpg" />
+    <Content Include="Content\images\mousehole1.jpg" />
+    <Content Include="Content\images\mousehole2.jpg" />
+    <Content Include="Content\images\mousehole3.jpg" />
+    <Content Include="Content\images\mousehole4.jpg" />
+    <Content Include="Content\images\panorama1.jpg" />
+    <Content Include="Content\images\panorama2.jpg" />
+    <Content Include="Content\images\panorama3.jpg" />
+    <Content Include="Content\images\range1.jpg" />
+    <Content Include="Content\images\stives1.jpg" />
+    <Content Include="Content\images\stives2.jpg" />
+    <Content Include="Content\images\stmichael1.jpg" />
+    <Content Include="Content\images\storm01.jpg" />
+    <Content Include="Content\images\title.gif" />
+    <Content Include="Content\images\title2.jpg" />
+    <Content Include="Content\images\wave.jpg" />
+    <Content Include="Content\images\view2b.jpg" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\local\CC_booking_form.pdf" />
+    <Content Include="Content\local\CC_Leaflet.pdf" />
+    <Content Include="Content\local\CC_map3.pdf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.4.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Utilities.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\ContactCC.cshtml" />
+    <Content Include="Views\Home\Download.cshtml" />
+    <Content Include="Views\Home\Guest.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Information.cshtml" />
+    <Content Include="Views\Home\Mousehole.cshtml" />
+    <Content Include="Views\Home\Visit.cshtml" />
+    <Content Include="Views\Shared\Comments1.cshtml" />
+    <Content Include="Views\Shared\Comments2.cshtml" />
+    <Content Include="Views\Shared\CottageBedroomPics.cshtml" />
+    <Content Include="Views\Shared\CottageInformation.cshtml" />
+    <Content Include="Views\Shared\CottageLivingPics.cshtml" />
+    <Content Include="Views\Shared\CottageOutsidePics.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\HarbourPics.cshtml" />
+    <Content Include="Views\Shared\LamornaPics.cshtml" />
+    <Content Include="Views\Shared\MountPics.cshtml" />
+    <Content Include="Views\Shared\MouseholeEatShop.cshtml" />
+    <Content Include="Views\Shared\MouseholeInformation.cshtml" />
+    <Content Include="Views\Shared\MouseholePics.cshtml" />
+    <Content Include="Views\Shared\PenwithInformation.cshtml" />
+    <Content Include="Views\Shared\StivesPics.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Views\Shared\CottageDungeonPics.cshtml" />
+    <Content Include="Views\Shared\SennenPics.cshtml" />
+    <Content Include="Views\Shared\NewlynPics.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\Video.cshtml" />
+    <Content Include="Views\Admin\AdminHome.cshtml" />
+    <Content Include="Views\Admin\ManageUsers.cshtml" />
+    <Content Include="Views\Admin\ManageCalender.cshtml" />
+    <Content Include="Views\Admin\EditUserDetails.cshtml" />
+    <Content Include="Views\Admin\BookingRow.cshtml" />
+    <Content Include="Views\Admin\EditBooking.cshtml" />
+    <Content Include="Views\Home\Availability.cshtml" />
+    <Content Include="Views\Shared\ViewBookingRow.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CarolineCottage.Domain\CarolineCottage.Domain.csproj">
+      <Project>{75d165cc-c227-4d20-a755-d3739a56f3db}</Project>
+      <Name>CarolineCottage.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CarolineCottage.Repository\CarolineCottage.Repository.csproj">
+      <Project>{e1489e00-a3c1-4626-9f2d-66a8bd3c90ec}</Project>
+      <Name>CarolineCottage.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56092</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56092/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

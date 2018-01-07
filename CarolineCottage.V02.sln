@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarolineCottage.WebUI", "CarolineCottage.WebUI\CarolineCottage.WebUI.csproj", "{103F29DC-DF7E-4DB9-AA04-0FDDD6145D5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarolineCottage.Repository", "CarolineCottage.Repository\CarolineCottage.Repository.csproj", "{E1489E00-A3C1-4626-9F2D-66A8BD3C90EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarolineCottage.Domain", "CarolineCottage.Domain\CarolineCottage.Domain.csproj", "{75D165CC-C227-4D20-A755-D3739A56F3DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{103F29DC-DF7E-4DB9-AA04-0FDDD6145D5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{103F29DC-DF7E-4DB9-AA04-0FDDD6145D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{103F29DC-DF7E-4DB9-AA04-0FDDD6145D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{103F29DC-DF7E-4DB9-AA04-0FDDD6145D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1489E00-A3C1-4626-9F2D-66A8BD3C90EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1489E00-A3C1-4626-9F2D-66A8BD3C90EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1489E00-A3C1-4626-9F2D-66A8BD3C90EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1489E00-A3C1-4626-9F2D-66A8BD3C90EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D165CC-C227-4D20-A755-D3739A56F3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D165CC-C227-4D20-A755-D3739A56F3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D165CC-C227-4D20-A755-D3739A56F3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D165CC-C227-4D20-A755-D3739A56F3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://mbrrace-test.npeu.ox.ac.uk:8080/tfs/mbrrace%20development
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CarolineCottage.WebUI\\CarolineCottage.WebUI.csproj
+		SccProjectName1 = CarolineCottage.WebUI
+		SccLocalPath1 = CarolineCottage.WebUI
+		SccProjectUniqueName2 = CarolineCottage.Repository\\CarolineCottage.Repository.csproj
+		SccProjectName2 = CarolineCottage.Repository
+		SccLocalPath2 = CarolineCottage.Repository
+		SccProjectUniqueName3 = CarolineCottage.Domain\\CarolineCottage.Domain.csproj
+		SccProjectName3 = CarolineCottage.Domain
+		SccLocalPath3 = CarolineCottage.Domain
+	EndGlobalSection
+EndGlobal

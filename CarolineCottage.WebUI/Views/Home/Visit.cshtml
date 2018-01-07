@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Places to visit";
+}
+<h2>
+    Places to visit</h2>
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
+    <li class="active">Places to visit</li>
+</ul>
+
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#tab-penwith" aria-controls="tab-penwith" role="tab" data-toggle="tab">Penwith peninsula <span class="glyphicon glyphicon-book" aria-hidden="true"></span> </a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-pics-lamorna" aria-controls="tab-pics-lamorna" role="tab" data-toggle="tab">Porthcurno &amp; Lamorna <span class="glyphicon glyphicon-camera"></span></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-pics-mount" aria-controls="tab-pics-mount" role="tab" data-toggle="tab">St Michael's Mount <span class="glyphicon glyphicon-camera"></span></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-pics-stives" aria-controls="tab-pics-stives" role="tab" data-toggle="tab">St Ives <span class="glyphicon glyphicon-camera"></span></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-pics-sennen" aria-controls="tab-pics-sennon" role="tab" data-toggle="tab">Sennen Cove <span class="glyphicon glyphicon-camera"></span></a>
+        </li>
+        <li role="presentation">
+            <a href="#tab-pics-newlyn" aria-controls="tab-pics-newlyn" role="tab" data-toggle="tab">Newlyn Harbour <span class="glyphicon glyphicon-camera"></span></a>
+        </li>
+        
+    </ul>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="tab-penwith">
+            @{ Html.RenderPartial("PenwithInformation"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-pics-lamorna">
+            @{ Html.RenderPartial("LamornaPics"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-pics-mount">
+            @{ Html.RenderPartial("MountPics"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-pics-stives">
+            @{ Html.RenderPartial("StivesPics"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-pics-sennen">
+            @{ Html.RenderPartial("SennenPics"); }
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-pics-newlyn">
+            @{ Html.RenderPartial("NewlynPics"); }
+        </div>
+    </div>
+</div>

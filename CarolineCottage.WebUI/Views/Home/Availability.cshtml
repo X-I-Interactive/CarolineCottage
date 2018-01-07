@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Availability";
+}
+
+@model List<BookingView>
+@using CarolineCottage.Domain
+@using CC.WebUI.Controllers
+
+@{
+    HomeController.ContactViewModel contactView = new HomeController.ContactViewModel();
+}
+<h2>
+    Availability
+</h2>
+<ul class="breadcrumb">
+    <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
+    <li class="active">Availability</li>
+</ul>
+<ul class="list-unstyled">
+    
+    <li>Click on <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title=""></span> below to contact us about that week</li>
+    <li>Out of season short lets are available by arrangement</li>
+    <li>Christmas and New Year dates are flexible. See <a href="http://www.mouseholelights.org.uk/" target="_blank"> www.mouseholelights.org.uk/</a> for more information about the Mousehole Lights.</li>
+    
+</ul>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-hover table-condensed " id="viewBookingTable">
+            <thead>
+                <tr>
+                    <th>Week</th>
+                    <th>Booked</th>                    
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Deposit</th>                    
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var booking in Model)
+            {
+                Html.RenderPartial("ViewBookingRow", booking);
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="enquiryModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Caroline Cottage enquiry <small>for week <span id="enquiryDate"></span></small></h4>
+            </div>
+            @using (Ajax.BeginForm("Enquiry", "Home", null,
+            new AjaxOptions
+            {
+                HttpMethod = "POST",
+                OnSuccess = "UpdateAfterEnquiry"  // JavaScript function to close the form after sendin the message
+            }
+            , new { id = "EnquiryForm" }
+            ))
+            {
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        @Html.HiddenFor(m => contactView.BookingWeekID)
+                        @Html.HiddenFor(m => contactView.WeekDate)
+                        <div class="form-group">
+                            @Html.LabelFor(m => contactView.From, new { @class = "control-label  col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(m => contactView.From, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => contactView.From, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => contactView.Message, new { @class = "control-label  col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(m => contactView.Message, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => contactView.Message, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class=col-md-offset-3 col-md-9">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </div><!-- /.modal-body -->
+                <div class="modal-footer">&nbsp;</div>
+                <!-- /.modal-footer -->
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(".ViewLine").click(function (e) {
+            $("#contactView_BookingWeekID").val($(this).parents("tr").attr("id"));
+            $("#contactView_WeekDate").val($(this).parents("tr").attr("data-local"));
+
+            // clear other values
+            $("#contactView_From").val("");
+            $("#contactView_Message").val("");
+
+            $("#enquiryDate").html($(this).parents("tr").attr("data-local"));
+            $('#enquiryModal').modal({ backdrop: 'static' });
+        });
+
+
+    }); // end of doc ready
+
+    function UpdateAfterEnquiry() {
+        $('#enquiryModal').modal("hide");
+    }
+
+</script>
