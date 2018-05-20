@@ -44,6 +44,13 @@ namespace CarolineCottage.WebUI.Controllers
             return PartialView("AdminHome", bookings);
         }
 
+        [CCAuthorize]
+        [HttpPost]
+        public ActionResult TransferToTextFile()
+        {
+
+            return Json(new { success = true });
+        }
         public ActionResult LoadUserList()
         {
             return Json(UserView.GetUserList(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString));
