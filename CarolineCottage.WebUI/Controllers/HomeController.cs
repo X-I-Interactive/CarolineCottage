@@ -93,6 +93,12 @@ namespace CC.WebUI.Controllers
         }
 
         [HttpPost]
+        public ActionResult PrivacyStatement()
+        {
+            return PartialView("PrivacyStatement");
+        }
+
+        [HttpPost]
         public ActionResult Enquiry(ContactViewModel contactView)
         {
             Contact contact = new Contact

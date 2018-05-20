@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <title>@ViewBag.Title</title>
 
 
@@ -16,10 +16,11 @@
 
 
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 
-    
+
 
 </head>
 <body>
@@ -28,11 +29,61 @@
         @RenderBody()
         <footer>
             <hr />
-            <p>
-                © 200<a href="~/admin">7</a>,@DateTime.Now.Year.ToString() Pugwash Worldwide Communications
-            </p>
+            <div>
+                <a id="viewPrivacy" href="#" title="Click to view"><span class="label label-info">Privacy statement</span></a>
+                <span>
+                    <a href="https://www.facebook.com/CarolineCottageMousehole/" target="_blank" class="facebook"><i class="fa fa-facebook"></i> Facebook</a>
+                </span>
+                <span>
+                    &nbsp;Website © 200<a href="~/admin">7</a>,@DateTime.Now.Year.ToString() Pugwash Worldwide Communications
+                </span>
+            </div>            
         </footer>
     </div>
 
+    <div class="modal modal-lg container fade" tabindex="-1" role="dialog" id="privacyModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">Caroline Cottage privacy statement<small></small></h3>
+                </div>
+
+
+                <div id="privacyBody"class="modal-body">
+
+
+                </div><!-- /.modal-body -->
+                <div class="modal-footer">
+                    <div class=col-md-offset-3 col-md-9">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                <!-- /.modal-footer -->
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </body>
+
 </html>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#viewPrivacy").click(function (e) {            
+
+            var jqxhr1 = $.ajax({
+                type: 'POST', url: "/Home/PrivacyStatement"
+            });
+            $.when(jqxhr1).done(function (responseStatement, textStatus, jqXHR) {
+                $("#privacyBody").html(responseStatement);
+                $('#privacyModal').modal({ backdrop: 'static' });    
+            });
+        });
+
+
+    }); // end of doc ready
+    
+
+</script>

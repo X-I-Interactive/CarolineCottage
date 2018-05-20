@@ -114,9 +114,20 @@
             {
                 CopyCurrentBookingLineToNext(currentLineID);
             }
-
-
         });
+
+        $("#loadFromDatabase").click(function () {
+            var jqxhr1 = $.ajax({ type: 'POST', url: "/Admin/TransferToTextFile" });
+            $.when(jqxhr1).done(function (responseStatus, textStatus, jqXHR) {
+                if (textStatus != "success") {
+                    alert("Error writing bookings to text file");
+                    return false;
+                } 
+                
+            });
+        });
+
+
 
     });
 
