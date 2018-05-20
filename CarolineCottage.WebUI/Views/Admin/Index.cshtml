@@ -51,7 +51,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Login</button>
-                </div>    <!-- /.modal-footer -->
+                </div> <!-- /.modal-footer -->
             }
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -110,25 +110,20 @@
 
         $("#adminHome").on("click", ".CopyFromAbove", function () {
             var currentLineID = $(this).parents("tr").attr("id");
-            if (currentLineID != $('#editBooksTable tr:last').attr('id'))
-            {
+            if (currentLineID != $('#editBooksTable tr:last').attr('id')) {
                 CopyCurrentBookingLineToNext(currentLineID);
             }
         });
 
-        $("#loadFromDatabase").click(function () {
+        $("#adminHome").on("click", "#loadFromDatabase", function () {           
             var jqxhr1 = $.ajax({ type: 'POST', url: "/Admin/TransferToTextFile" });
             $.when(jqxhr1).done(function (responseStatus, textStatus, jqXHR) {
                 if (textStatus != "success") {
                     alert("Error writing bookings to text file");
                     return false;
-                } 
-                
+                }
             });
         });
-
-
-
     });
 
     // end of document ready
@@ -213,8 +208,7 @@
         $("#EditUserDetails").html("");
     }
 
-    function EditBookingLine(bookingLineID)
-    {
+    function EditBookingLine(bookingLineID) {
         // get line as form then display as extra row
 
         var jqxhr1 = $.ajax({
@@ -237,11 +231,9 @@
         });
     }
 
-    function UpdateAfterEditBooking(rowHTML)
-    {
-       $("#EditBookingFormRow").remove();
-        if (rowHTML == null)
-        {
+    function UpdateAfterEditBooking(rowHTML) {
+        $("#EditBookingFormRow").remove();
+        if (rowHTML == null) {
             alert("Error saving calendar line");
             return false;
         }
@@ -258,22 +250,21 @@
             if (textStatus != "success") {
                 alert("Error updating booking line");
                 return false;
-            }                        
+            }
             if (rowHTML != null) {
                 ReplaceBookingLineRow(rowHTML);
-            }            
+            }
             return false;
         });
     }
 
 
-    function ReplaceBookingLineRow(rowHTML)
-    {
+    function ReplaceBookingLineRow(rowHTML) {
         var startPosn = rowHTML.indexOf('WeekID_');
         var endPosn = rowHTML.indexOf('"', startPosn);
         var rowID = rowHTML.substring(startPosn, endPosn);
         //  get bookline line ID from rowHTML and replace
-        $("tr#" + rowID).replaceWith(rowHTML);        
+        $("tr#" + rowID).replaceWith(rowHTML);
     }
 
 </script>

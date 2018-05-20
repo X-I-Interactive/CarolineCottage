@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Security;
 using CarolineCottage.Domain;
@@ -48,7 +49,8 @@ namespace CarolineCottage.WebUI.Controllers
         [HttpPost]
         public ActionResult TransferToTextFile()
         {
-
+            //var fileContents = System.IO.File.ReadAllText(HostingEnvironment.MapPath(@"~/App_Data/file.txt"));
+            var filePath = HostingEnvironment.MapPath(@"~/App_Data");
             return Json(new { success = true });
         }
         public ActionResult LoadUserList()
