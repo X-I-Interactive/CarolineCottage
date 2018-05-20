@@ -7,9 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using CarolineCottage.Repository.CarolineCottageClasses;
 using CarolineCottage.Repository.CarolineCottageDatabase;
+using AutoMapper;
 
 namespace CarolineCottage.Domain
 {
+    public class BookingViewReturn
+    {
+        public List<BookingView> BookingList { get; set; }
+        public string ReturnError { get; set; }
+
+        public BookingViewReturn()
+        {
+            BookingList = new List<BookingView>();
+        }
+
+    }
+
     public class BookingView : IBooking
     {
         [Display(Name = "Available for short breaks")]
@@ -45,7 +58,7 @@ namespace CarolineCottage.Domain
 
         public void Save(string connectionString)
         {
-            AutoMapper.Mapper.CreateMap<BookingView, Booking>();
+            Mapper.CreateMap<BookingView, Booking>();
 
             try
             {
@@ -73,12 +86,13 @@ namespace CarolineCottage.Domain
             }
         }
 
-        public static List<BookingView> GetCurrentBookings(string connectionString, bool addNewRows, DateTime endDateForDisplay)
+        public static BookingViewReturn GetCurrentBookings(string connectionString, bool addNewRows, DateTime endDateForDisplay)
         {
             DateTime nextWeek = DateTimeExtensions.NextDayOfWeek(DateTime.Now, Booking.ChangeoverDay);
 
-            AutoMapper.Mapper.CreateMap<Booking, BookingView>();
-            AutoMapper.Mapper.CreateMap<BookingView, Booking>();
+            Mapper.CreateMap<Booking, BookingView>();
+            Mapper.CreateMap<BookingView, Booking>();
+            BookingViewReturn bookingViewReturn = new BookingViewReturn();
 
             try
             {
@@ -108,12 +122,14 @@ namespace CarolineCottage.Domain
                     }
 
                     currentBookings.Last().IsLastRow = true;
-                    return currentBookings;
+                    bookingViewReturn.BookingList = currentBookings;
+                    return bookingViewReturn;
                 }
             }
             catch (Exception e)            {
-                
-                return new List<BookingView>();
+
+                bookingViewReturn.ReturnError = e.Message;
+                return bookingViewReturn;
             }
 
             

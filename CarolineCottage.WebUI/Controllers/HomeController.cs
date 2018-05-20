@@ -67,7 +67,7 @@ namespace CC.WebUI.Controllers
             DateTime endDate = Convert.ToDateTime(endDateForDisplay);
 
             // load booking view
-            List<BookingView> bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, false, endDate);            
+            BookingViewReturn bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, false, endDate);            
             return View(bookings);
         }
 

@@ -2,7 +2,7 @@
     ViewBag.Title = "Availability";
 }
 
-@model List<BookingView>
+@model BookingViewReturn
 @using CarolineCottage.Domain
 @using CC.WebUI.Controllers
 
@@ -36,17 +36,17 @@
             </thead>
 
             <tbody>
-                @if(Model.Count() == 0)
+                @if(Model.BookingList.Count() == 0)
                 {
                     <tr>
                         <td colspan="4">
-                            Availability list under revision: available by 22 May 2018
+                            Availability list error: @Model.ReturnError
                         </td>
                     </tr>
                 }
                 else
                 {
-                    foreach (var booking in Model)
+                    foreach (var booking in Model.BookingList)
                     {
                         Html.RenderPartial("ViewBookingRow", booking);
                     }
