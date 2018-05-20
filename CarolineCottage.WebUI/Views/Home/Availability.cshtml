@@ -17,11 +17,11 @@
     <li class="active">Availability</li>
 </ul>
 <ul class="list-unstyled">
-    
+
     <li>Click on <span class="glyphicon glyphicon-info-sign" aria-hidden="true" title=""></span> below to contact us about that week</li>
     <li>Out of season short lets are available by arrangement</li>
     <li>Christmas and New Year dates are flexible. See <a href="http://www.mouseholelights.org.uk/" target="_blank"> www.mouseholelights.org.uk/</a> for more information about the Mousehole Lights.</li>
-    
+
 </ul>
 <div class="row">
     <div class="col-md-6">
@@ -29,17 +29,28 @@
             <thead>
                 <tr>
                     <th>Week</th>
-                    <th>Booked</th>                    
+                    <th>Booked</th>
                     <th class="text-right">Price</th>
-                    <th class="text-right">Deposit</th>                    
+                    <th class="text-right">Deposit</th>
                 </tr>
             </thead>
 
             <tbody>
-                @foreach (var booking in Model)
-            {
-                Html.RenderPartial("ViewBookingRow", booking);
-            }
+                @if(Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="4">
+                            Availability list under revision: available by 22 May 2018
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var booking in Model)
+                    {
+                        Html.RenderPartial("ViewBookingRow", booking);
+                    }
+                }                
             </tbody>
         </table>
     </div>
