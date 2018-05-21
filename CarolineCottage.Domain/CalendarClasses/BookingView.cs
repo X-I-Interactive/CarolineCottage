@@ -35,7 +35,7 @@ namespace CarolineCottage.Domain
 
         [Display(Name = "Week's price")]
         [Required(ErrorMessage = "A price for the week is required")]
-        [Range(300, 2000, ErrorMessage = "Price must be between 300 and 2000")]        
+        [Range(300, 2000, ErrorMessage = "Price must be between 300 and 2000")]
         public int WeekPrice { get; set; }
 
         public DateTime WeekStartDate { get; set; }
@@ -44,7 +44,7 @@ namespace CarolineCottage.Domain
 
         public BookingView()
         {
-            
+
         }
 
         public BookingView(DateTime weekStartDate)
@@ -71,7 +71,7 @@ namespace CarolineCottage.Domain
             catch (Exception e)
             {
                 //   flag the error to the controller
-                BookingID = 0;                
+                BookingID = 0;
             }
         }
 
@@ -80,13 +80,13 @@ namespace CarolineCottage.Domain
             using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
             {
                 DateTime lastDate = dbContext.Bookings.Max(x => x.WeekStartDate);
-                var bookingView =  AutoMapper.Mapper.Map<Booking, BookingView>(dbContext.Bookings.FirstOrDefault(x => x.BookingID == bookingID)) ?? new BookingView();
+                var bookingView = AutoMapper.Mapper.Map<Booking, BookingView>(dbContext.Bookings.FirstOrDefault(x => x.BookingID == bookingID)) ?? new BookingView();
                 bookingView.IsLastRow = (lastDate - bookingView.WeekStartDate).Days == 0;
                 return bookingView;
             }
         }
 
-        public static BookingViewReturn GetCurrentBookings(string connectionString, bool addNewRows, DateTime endDateForDisplay)
+        public static BookingViewReturn GetCurrentBookings(string connectionString, bool addNewRows, DateTime endDateForDisplay, bool debugSQLConnection)
         {
             DateTime nextWeek = DateTimeExtensions.NextDayOfWeek(DateTime.Now, Booking.ChangeoverDay);
 
@@ -116,7 +116,7 @@ namespace CarolineCottage.Domain
                     //  then get list
                     List<BookingView> currentBookings = AutoMapper.Mapper.Map<IEnumerable<Booking>, List<BookingView>>(dbContext.Bookings.Where(x => x.WeekStartDate >= nextWeek));
 
-                    if(!addNewRows)
+                    if (!addNewRows)
                     {
                         currentBookings = currentBookings.Where(x => x.WeekStartDate < endDateForDisplay).ToList();
                     }
@@ -126,18 +126,22 @@ namespace CarolineCottage.Domain
                     return bookingViewReturn;
                 }
             }
-            catch (Exception e)            {
-
+            catch (Exception e)
+            {
                 bookingViewReturn.ReturnError = e.Message;
+                if (!debugSQLConnection)
+                {
+                    bookingViewReturn.ReturnError = "List nor currently available";
+                }
                 return bookingViewReturn;
             }
 
-            
+
         }
 
         public static BookingView CopyLineToNextLine(int currentBookingID, string connectionString)
         {
-            AutoMapper.Mapper.CreateMap<Booking, BookingView>();            
+            AutoMapper.Mapper.CreateMap<Booking, BookingView>();
             try
             {
                 using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
@@ -164,7 +168,7 @@ namespace CarolineCottage.Domain
             {
 
                 return new BookingView();
-            }            
+            }
         }
     }
 

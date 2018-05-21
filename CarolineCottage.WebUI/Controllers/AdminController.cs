@@ -39,7 +39,7 @@ namespace CarolineCottage.WebUI.Controllers
         {
             // load booking view
             List<BookingView> bookings = new List<BookingView>();
-            bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, true, DateTime.MaxValue).BookingList;
+            bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, true, DateTime.MaxValue, true).BookingList;
 
             return PartialView("AdminHome", bookings);
         }

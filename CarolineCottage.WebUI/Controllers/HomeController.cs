@@ -65,9 +65,9 @@ namespace CC.WebUI.Controllers
         {
             string endDateForDisplay = WebConfigurationManager.AppSettings["EndDateForDisplay"];
             DateTime endDate = Convert.ToDateTime(endDateForDisplay);
-
+            bool debugSQLConnection = Convert.ToBoolean(WebConfigurationManager.AppSettings["DebugSQLConnection"]);
             // load booking view
-            BookingViewReturn bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, false, endDate);            
+            BookingViewReturn bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, false, endDate, debugSQLConnection);            
             return View(bookings);
         }
 
