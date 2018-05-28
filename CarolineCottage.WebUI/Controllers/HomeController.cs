@@ -21,6 +21,10 @@ namespace CC.WebUI.Controllers
 
         public ActionResult Index()
         {
+            if (TempData["Message"] != null)
+            {
+                ViewData["Message"] = TempData["Message"];
+            }
             return View();
         }
 
@@ -67,12 +71,12 @@ namespace CC.WebUI.Controllers
             DateTime endDate = Convert.ToDateTime(endDateForDisplay);
             bool debugSQLConnection = Convert.ToBoolean(WebConfigurationManager.AppSettings["DebugSQLConnection"]);
             // load booking view
-            BookingViewReturn bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, false, endDate, debugSQLConnection);            
+            BookingViewReturn bookings = BookingView.GetCurrentBookings(ConfigurationManager.ConnectionStrings["CCConnectionString"].ConnectionString, false, endDate, debugSQLConnection);
             return View(bookings);
         }
 
-        [HttpPost]        
-        public ActionResult ContactCC(ContactViewModel contactVM) 
+        [HttpPost]
+        public ActionResult ContactCC(ContactViewModel contactVM)
         {
 
             if (!ModelState.IsValid)
@@ -87,11 +91,12 @@ namespace CC.WebUI.Controllers
                 Message = contactVM.Message
             };
 
-            new Email().Send(contact);
-
+            var message = new Email().Send(contact);
+            message = CheckMessageErrorState(message);
             return RedirectToAction("index", "Home");
         }
 
+        
         [HttpPost]
         public ActionResult PrivacyStatement()
         {
@@ -107,25 +112,47 @@ namespace CC.WebUI.Controllers
                 Subject = "Enquiry for week " + contactView.WeekDate,
                 Message = contactView.Message
             };
-            new Email().Send(contact);
+            var message = new Email().Send(contact);
+            message = CheckMessageErrorState(message);
+
+            if (message != string.Empty)
+            {
+                TempData["Message"] = null;
+                return Json(new { response = false });
+            }
 
             contact.To = contact.From;
-            contact.Subject = "Enquiry confirmation for week  " + contactView.WeekDate;
+            contact.From = "caroline@pugwash.com";
+            contact.Subject = "Confirmation of your enquiry for week  " + contactView.WeekDate;
+            contact.Message = "This is a confirmation that you have contacted us and does not need a reply. You can also contact us on 01865 727423";
             new Email().Send(contact);
 
             return Json(new { response = true });
         }
 
         #region "helper functions"
+        private string CheckMessageErrorState(string message)
+        {
+            if (message != string.Empty)
+            {
+                if (!Convert.ToBoolean(WebConfigurationManager.AppSettings["DebugSQLConnection"]))
+                {
+                    message = "There was an error sending your message: please call us on 01865 727423";
+                }
 
+                TempData["Message"] = message;
+            }
+
+            return message;
+        }
 
         #endregion
 
         #region "email"
         public class ContactViewModel
         {
-            [Required (ErrorMessage ="Your email address is required")]
-            [DataType(DataType.EmailAddress, ErrorMessage ="Please enter a valid email address")]
+            [Required(ErrorMessage = "Your email address is required")]
+            [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a valid email address")]
             [Display(Name = "Your email address")]
             public string From { get; set; }
 
@@ -151,28 +178,40 @@ namespace CC.WebUI.Controllers
 
             public Contact()
             {
-                To = null;                
+                To = null;
             }
         }
 
         public class Email
         {
-            public void Send(Contact contact)
+            public string Send(Contact contact)
             {
+                string returnMessage = "";
                 MailMessage mail = new MailMessage(
                     "caroline@pugwash.com",
                     contact.To ?? "caroline@pugwash.com",
                     contact.Subject,
                     contact.Message + "\n\nFrom\n\n" + contact.From);
-                mail.ReplyToList.Add(contact.From);             
+                mail.ReplyToList.Add(contact.From);
 
-                using (SmtpClient smtpClient = new SmtpClient("smtp.pugwash.com"))
+                try
                 {
-                    smtpClient.UseDefaultCredentials = false;
-                    smtpClient.Credentials = new NetworkCredential("caroline@pugwash.com", "ARD1329");
-                    smtpClient.Send(mail);
+                    using (SmtpClient smtpClient = new SmtpClient("SMTP.Livemail.co.uk"))
+                    {
+                        smtpClient.UseDefaultCredentials = false;
+                        smtpClient.Credentials = new NetworkCredential("caroline@pugwash.com", "ARD1329");
+                        smtpClient.Port = 587;
+                        smtpClient.Send(mail);
+                    }
                 }
-            }            
+                catch (Exception e)
+                {
+
+                    returnMessage = $"Error sending: 1: {e.Message} 2: {e.InnerException.Message}";
+                }
+
+                return returnMessage;
+            }
         }
         #endregion
 

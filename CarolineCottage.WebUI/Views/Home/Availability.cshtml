@@ -121,8 +121,12 @@
 
     }); // end of doc ready
 
-    function UpdateAfterEnquiry() {
+    function UpdateAfterEnquiry(response) {
         $('#enquiryModal').modal("hide");
+
+        if (!response.response) {
+            alert("Error sending your enquiry; please call us on 01865 727423");
+        }        
     }
 
 </script>
