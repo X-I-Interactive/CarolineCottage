@@ -154,12 +154,14 @@
     <Content Include="Content\images3\111022 030 %28640x480%29.jpg" />
     <Content Include="Content\images3\111022 032 %28640x480%29.jpg" />
     <Content Include="Content\images3\111022 033 %28640x480%29.jpg" />
-    <Content Include="Content\images3\IMG_1641 %28640x427%29.jpg" />
-    <Content Include="Content\images3\IMG_1653 %28640x427%29.jpg" />
+    <Content Include="Content\images3\harbour_coe_s.jpg" />
+    <Content Include="Content\images3\harbour_cyac.jpg" />
+    <Content Include="Content\images3\IMG_harboursand.jpg" />
+    <Content Include="Content\images3\IMG_smallbeach.jpg" />
     <Content Include="Content\images3\IMG_1669 %28640x427%29.jpg" />
-    <Content Include="Content\images3\IMG_1680 %28640x427%29.jpg" />
-    <Content Include="Content\images3\IMG_1689 %28640x427%29.jpg" />
-    <Content Include="Content\images3\IMG_1694 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_PAN1.jpg" />
+    <Content Include="Content\images3\IMG_harboursails.jpg" />
+    <Content Include="Content\images3\IMG_lobpots.jpg" />
     <Content Include="Content\images3\IMG_1719 %28640x427%29.jpg" />
     <Content Include="Content\images3\IMG_1723 %28640x427%29.jpg" />
     <Content Include="Content\images3\IMG_1727 %28640x427%29.jpg" />
@@ -174,7 +176,7 @@
     <Content Include="Content\images3\IMG_1788 %28640x427%29.jpg" />
     <Content Include="Content\images3\IMG_1794 %28640x427%29.jpg" />
     <Content Include="Content\images3\IMG_1816 %28640x427%29.jpg" />
-    <Content Include="Content\images3\IMG_1821 %28640x427%29.jpg" />
+    <Content Include="Content\images3\IMG_harbourmouth.jpg" />
     <Content Include="Content\images3\IMG_1822 %28640x427%29.jpg" />
     <Content Include="Content\images3\IMG_1824 %28640x427%29.jpg" />
     <Content Include="Content\images3\IMG_1836 %28640x427%29.jpg" />
@@ -287,7 +289,7 @@
     <Content Include="Views\Home\Download.cshtml" />
     <Content Include="Views\Home\Guest.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Information.cshtml" />
+    <Content Include="Views\Home\Cottage.cshtml" />
     <Content Include="Views\Home\Mousehole.cshtml" />
     <Content Include="Views\Home\Visit.cshtml" />
     <Content Include="Views\Shared\Comments1.cshtml" />

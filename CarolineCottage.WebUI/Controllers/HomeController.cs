@@ -28,7 +28,7 @@ namespace CC.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Information()
+        public ActionResult Cottage()
         {
             return View();
         }

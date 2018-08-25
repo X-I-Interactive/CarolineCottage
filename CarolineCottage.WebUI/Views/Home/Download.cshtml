@@ -2,7 +2,8 @@
     ViewBag.Title = "Download";
 }
 <h2>
-    Download</h2>
+    Download
+</h2>
 <ul class="breadcrumb">
     <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
     <li class="active">Download</li>
@@ -10,17 +11,34 @@
 <div class="row">
     <div class="col-md-5">
         <ul>
-            <li><a href="@Url.Content("~/Content/local/CC_map3.pdf")" target="_blank">Download
-                our map</a></li>
-            <li><a href="@Url.Content("~/Content/local/CC_booking_form.pdf")" target="_blank">Download
-                our booking form</a></li>
-            <li><a href="@Url.Content("~/Content/local/CC_Leaflet.pdf")" target="_blank"">Download
-                our brochure</a></li>
+            <li>
+                <a href="@Url.Content("~/Content/local/CC_map3.pdf")" target="_blank">
+                    Download
+                    our map
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Content("~/Content/local/CC_booking_form.pdf")" target="_blank">
+                    Download
+                    our booking form
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Content("~/Content/local/CC_Leaflet.pdf")" target="_blank" ">
+                    Download
+                    our brochure
+                </a>
+            </li>
         </ul>
+        <p>
+            <span class="label label-info">Disclaimer</span> we cannot guarantee the availability of broadband and wi-fi as the external wiring is out of our control. Also, if previous visitors have caused any damage, we will not be able to rectify this immediately.
+        </p>
     </div>
     <div class="col-md-7">
         <div class="container">
-            <img src="@Url.Content("~/Content/images/harbour10.jpg")"  alt="Mousehole harbour" />
+            <img src="@Url.Content("~/Content/images/harbour10.jpg")" alt="Mousehole harbour" />
         </div>
     </div>
 </div>
+
+
