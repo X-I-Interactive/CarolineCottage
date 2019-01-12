@@ -1,0 +1,35 @@
+﻿@model CarolineCottageService.CarouselDisplay
+@using CarolineCottage.WebUI.Application
+
+<div id="carousel-home-page" class="carousel slide container carousel-fade" style="width: 500px; height: 300px !important; margin: 0 auto" data-ride="carousel">
+    <div class="carousel-inner" role="listbox" style=" width:100%; height: 300px !important;">
+        @*<div class="item active">
+                <img src="~/Content/imagesmain/mousehole_signature.jpg" alt="...">
+                <div class="carousel-caption">
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/imagesmain/harbour_cyac.jpg" alt="...">
+                <div class="carousel-caption">
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/imagesmain/harbour_coe_s.jpg" alt="...">
+                <div class="carousel-caption">
+                </div>
+            </div>*@
+        @{
+            string active = "active";
+            string path = Model.ImagePath;
+            foreach (var image in Model.ImageList)
+            {
+                <div class="item @active">
+                    <img src="@Url.Content(path + "/" + image.ImageName)" alt="...">
+                </div>
+                {
+                    active = "";
+                }
+            }
+        }
+    </div>
+</div>

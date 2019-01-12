@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CarolineCottageService.CarouselDisplay
+@using CarolineCottage.WebUI.Application
+@{
     ViewBag.Title = "Caroline cottage home page";
 }
 <h4>
@@ -21,7 +23,7 @@
         <h4 class="text-center"><span class="label label-success">Now</span> with Wi-Fi</h4>
     </div>
     <div class="col-md-5 ">
-        <img src="~/Content/imagesmain/mousehole_signature.jpg" class="img-responsive center-block" />
+        @{Html.RenderPartial("Carousel", Model);}
     </div>
 </div>
 @{

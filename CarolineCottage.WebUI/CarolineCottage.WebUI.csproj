@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionFilters\CustomAuthorisationAttribute.cs" />
+    <Compile Include="Application\CarolineCottageService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -143,6 +144,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\ImagesCarousel\02harbour_coe_s.jpg" />
+    <Content Include="Content\ImagesCarousel\03harbour_cyac.jpg" />
+    <Content Include="Content\ImagesCarousel\01mousehole_signature.jpg" />
     <Content Include="Content\imagesmain\penwith_sennon01.jpg" />
     <Content Include="Content\imagesmain\mousehole_hjump.jpg" />
     <Content Include="Content\imagesmain\mousehole_pool.jpg" />
@@ -232,6 +236,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\local\home.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -286,6 +291,7 @@
     <Content Include="Views\Home\Availability.cshtml" />
     <Content Include="Views\Shared\ViewBookingRow.cshtml" />
     <Content Include="Views\Shared\PrivacyStatement.cshtml" />
+    <Content Include="Views\Home\Carousel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,7 @@ using System.Net;
 using CarolineCottage.Domain;
 using System.Configuration;
 using System.Web.Configuration;
+using CarolineCottage.WebUI.Application;
 
 namespace CC.WebUI.Controllers
 {
@@ -25,7 +26,13 @@ namespace CC.WebUI.Controllers
             {
                 ViewData["Message"] = TempData["Message"];
             }
-            return View();
+
+            string path = Server.MapPath("~/Content/ImagesCarousel");
+            CarolineCottageService.CarouselDisplay carouselDisplay = new CarolineCottageService.CarouselDisplay();
+            carouselDisplay.ImagePath = "~/Content/ImagesCarousel";
+            carouselDisplay.GetImageDisplayList(path);
+
+            return View(carouselDisplay);
         }
 
         public ActionResult Cottage()
