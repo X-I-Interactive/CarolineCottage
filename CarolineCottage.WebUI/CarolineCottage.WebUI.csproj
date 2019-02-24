@@ -165,6 +165,8 @@
     <Content Include="Content\imagesmain\mousehole_signature.jpg" />
     <Content Include="Content\imagesmain\mousehole_hwalls.jpg" />
     <Content Include="Content\imagesmain\bathroom.jpg" />
+    <Content Include="Content\imagesmain\slab.jpg" />
+    <Content Include="Content\imagesmain\slab_small.jpg" />
     <Content Include="Content\imagesmain\twin_bedroom01.jpg" />
     <Content Include="Content\imagesmain\twin_bedroom02.jpg" />
     <Content Include="Content\imagesmain\bunk_room.jpg" />

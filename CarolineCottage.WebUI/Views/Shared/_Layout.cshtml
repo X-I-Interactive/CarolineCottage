@@ -1,6 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135071304-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135071304-1');
+    </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,6 +34,7 @@
 </head>
 <body>
     <div class="container">
+        @*<img class="img-circle" src="~/Content/imagesmain/slab_small.jpg" />*@
         <img src="~/Content/imagesmain/title.gif" alt="Caroline Cottage" />
         @RenderBody()
         <footer>
@@ -39,7 +49,7 @@
                 <span>
                     &nbsp;| Website © 200<a href="~/admin">7</a>,@DateTime.Now.Year.ToString() Pugwash Worldwide Communications
                 </span>
-            </div>            
+            </div>
         </footer>
     </div>
 
