@@ -33,9 +33,11 @@
 
 </head>
 <body>
-    <div class="container">
-        <img class="img-circle" src="~/Content/imagesmain/slab_small.jpg" />
-        <img src="~/Content/imagesmain/title.gif" alt="Caroline Cottage" />
+    <div class="container-fluid">
+        <div class="">
+            <img class="img-responsive " src="~/Content/imagesmain/header_2.jpg" />
+        </div>
+        @*<img src="~/Content/imagesmain/title.gif" alt="Caroline Cottage" />*@
         @RenderBody()
         <footer>
             <hr />
@@ -62,7 +64,7 @@
                 </div>
 
 
-                <div id="privacyBody"class="modal-body">
+                <div id="privacyBody" class="modal-body">
 
 
                 </div><!-- /.modal-body -->
@@ -83,19 +85,19 @@
 
     $(document).ready(function () {
 
-        $("#viewPrivacy").click(function (e) {            
+        $("#viewPrivacy").click(function (e) {
 
             var jqxhr1 = $.ajax({
                 type: 'POST', url: "/Home/PrivacyStatement"
             });
             $.when(jqxhr1).done(function (responseStatement, textStatus, jqXHR) {
                 $("#privacyBody").html(responseStatement);
-                $('#privacyModal').modal({ backdrop: 'static' });    
+                $('#privacyModal').modal({ backdrop: 'static' });
             });
         });
 
 
     }); // end of doc ready
-    
+
 
 </script>

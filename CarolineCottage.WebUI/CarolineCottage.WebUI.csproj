@@ -142,9 +142,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\ImagesCarousel\02harbour_coe_s.jpg" />
+    <Content Include="Content\ImagesCarousel\02harbourwa1.JPG" />
     <Content Include="Content\ImagesCarousel\03harbour_cyac.jpg" />
     <Content Include="Content\ImagesCarousel\01mousehole_signature.jpg" />
+    <Content Include="Content\ImagesCarousel\04harbourwa2.JPG" />
+    <Content Include="Content\imagesmain\header_1.jpg" />
+    <Content Include="Content\imagesmain\header_2.jpg" />
     <Content Include="Content\imagesmain\penwith_sennon01.jpg" />
     <Content Include="Content\imagesmain\mousehole_hjump.jpg" />
     <Content Include="Content\imagesmain\mousehole_pool.jpg" />
