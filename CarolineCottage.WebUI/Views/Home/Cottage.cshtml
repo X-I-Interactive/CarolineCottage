@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CarolineCottageService.CarouselDisplay
+@using CarolineCottage.WebUI.Application
+@{
     ViewBag.Title = "Caroline cottage information";
 }
 <h2>
@@ -8,7 +10,7 @@
     <li>@Html.ActionLink("Home", "Index", "Home") <span class="divider"></span></li>
     <li class="active">About the cottage</li>
 </ul>
-<div>    
+<div>
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="#tab-cottage" aria-controls="tab-cottage" role="tab" data-toggle="tab">Caroline cottage <span class="glyphicon glyphicon-book" aria-hidden="true"></span> </a>
@@ -26,13 +28,13 @@
             <a href="#tab-pics-dungeon" aria-controls="tab-pics-dungeon" role="tab" data-toggle="tab">Our Dungeon annexe <span class="glyphicon glyphicon-camera"></span></a>
         </li>
     </ul>
-    
+
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-cottage">
-            @{ Html.RenderPartial("CottageInformation"); }
+            @{ Html.RenderPartial("CottageInformation", Model); }
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-pics-outside">
-            
+
             @{ Html.RenderPartial("CottageOutsidePics"); }
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-pics-living">
@@ -46,5 +48,5 @@
         </div>
 
 
-    </div>       
+    </div>
 </div>

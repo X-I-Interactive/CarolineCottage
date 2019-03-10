@@ -48,3 +48,27 @@ textarea {
 .carousel-fade .carousel-control {
     z-index: 2;
 }
+
+@media (max-width: 767px) {
+    .nav-tabs > li {
+        float: none;
+        /*border: 1px solid transparent;*/
+    }
+}
+/*@media (max-width: 767px) {
+    .nav-tabs > li {
+        float: none;
+        border: 1px solid transparent;
+        border:1px solid #dddddd;
+    }
+
+        .nav-tabs > li.active > a {
+            border: none;
+        }
+
+            .nav > li > a:hover, .nav > li > a:focus,
+            .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+                background: none;
+                border: none;
+            }
+}*/

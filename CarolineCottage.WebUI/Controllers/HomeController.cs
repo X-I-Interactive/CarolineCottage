@@ -37,7 +37,11 @@ namespace CC.WebUI.Controllers
 
         public ActionResult Cottage()
         {
-            return View();
+            string path = Server.MapPath("~/Content/ImagesCarouselCottage");
+            CarolineCottageService.CarouselDisplay carouselDisplay = new CarolineCottageService.CarouselDisplay();
+            carouselDisplay.ImagePath = "~/Content/ImagesCarouselCottage";
+            carouselDisplay.GetImageDisplayList(path);
+            return View(carouselDisplay);
         }
 
         public ActionResult Mousehole()
