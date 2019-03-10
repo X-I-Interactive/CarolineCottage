@@ -142,6 +142,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\ImagesCarouselCottage\00IMG_6415.JPG" />
+    <Content Include="Content\ImagesCarouselCottage\01IMG_1788.jpg" />
+    <Content Include="Content\ImagesCarouselCottage\02IMG_1768.jpg" />
+    <Content Include="Content\ImagesCarouselCottage\03IMG_1913.JPG" />
+    <Content Include="Content\ImagesCarouselCottage\04IMG_1778.jpg" />
+    <Content Include="Content\ImagesCarouselCottage\05IMG_1886.jpg" />
     <Content Include="Content\ImagesCarousel\01harbour_cyac.jpg" />
     <Content Include="Content\ImagesCarousel\02IMG_6367.JPG" />
     <Content Include="Content\ImagesCarousel\03IMG_6400.JPG" />

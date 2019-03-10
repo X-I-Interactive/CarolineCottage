@@ -1,41 +1,49 @@
-﻿<div class="tab-pane active" id="tab-cottage">
+﻿@model CarolineCottageService.CarouselDisplay
+@using CarolineCottage.WebUI.Application
+<div class="tab-pane active" id="tab-cottage">
     <div class="col-md-12">
         <p>
             CAROLINE COTTAGE is a deceptively spacious granite cottage, situated on the
             main street and backing onto Keigwin Place some 100 metres from the beach and harbour.
         </p>
-        <div class="pull-left">
-            <div class="pull-left" style="margin-right:10px">
-                <img class="img-responsive img-thumbnail center-block" src="~/Content/imagesmain/cottage_front.jpg" alt="" data-toggle="tooltip" title="Caroline Cottage" />
-            </div>            
-            <p>
-                The bedrooms and bathroom are at street level and the living areas upstairs. From
-                the open-plan lounge (c. 18') and balcony there are wonderful views over the rooftops (complete
-                with seagulls) and St Clement’s Isle, and across Mount’s Bay to St Michael’s Mount.
-                The spacious kitchen/dining room (c. 20') has a traditional Cornish range and a well-equipped
-                wood-fitted kitchen. The table seats 8. Our studio annexe, “The Dungeon”, is at a lower level on Keigwin
-                Square. Double futon plus shower.
-            </p>
-            <p>
-                We provide lots of books, games, dvds and puzzles for all ages. We have recently installed W-Fi.
-            </p>
-            <p>
-                2001 was our first letting year - we continue to run bookings ourselves so that
-                we can respond in person to your queries. After your stay we welcome any suggestions
-                for added comfort. Our aim is that you find the cottage both beautiful and homely,
-                to make your holiday a real pleasure – and hopefully one that you will look forward
-                to repeating!
-            </p>
-            <p>
-                Our booking information includes more useful information on the cottage and village.
-                We offer some flexibility e.g. for short or off-peak stays. For most of us holidays
-                are a well-earned break, so we have been keen to make the cottage attractive and
-                comfortable for maximum enjoyment.
-            </p>
-            <p>
-                Pets are welcome at an extra £5 charge - please contact us if you have pets.
-            </p>
+        <div class="row">
+            <div class="col-md-6">
+                @{Html.RenderPartial("Carousel", Model);}
+                @*<div>
+                        <img class="img-responsive img-thumbnail center-block" src="~/Content/imagesmain/cottage_front.jpg" alt="" data-toggle="tooltip" title="Caroline Cottage" />
+                    </div>*@
+            </div>
+            <div class="col-md-6">
+                <p>
+                    The bedrooms and bathroom are at street level and the living areas upstairs. From
+                    the open-plan lounge (c. 18') and balcony there are wonderful views over the rooftops (complete
+                    with seagulls) and St Clement’s Isle, and across Mount’s Bay to St Michael’s Mount.
+                    The spacious kitchen/dining room (c. 20') has a traditional Cornish range and a well-equipped
+                    wood-fitted kitchen. The table seats 8. Our studio annexe, “The Dungeon”, is at a lower level on Keigwin
+                    Square. Double futon plus shower.
+                </p>
+                <p>
+                    We provide lots of books, games, dvds and puzzles for all ages. We have recently installed W-Fi.
+                </p>
+                <p>
+                    2001 was our first letting year - we continue to run bookings ourselves so that
+                    we can respond in person to your queries. After your stay we welcome any suggestions
+                    for added comfort. Our aim is that you find the cottage both beautiful and homely,
+                    to make your holiday a real pleasure – and hopefully one that you will look forward
+                    to repeating!
+                </p>
+                <p>
+                    Our booking information includes more useful information on the cottage and village.
+                    We offer some flexibility e.g. for short or off-peak stays. For most of us holidays
+                    are a well-earned break, so we have been keen to make the cottage attractive and
+                    comfortable for maximum enjoyment.
+                </p>
+                <p>
+                    Pets are welcome at an extra £5 charge - please contact us if you have pets.
+                </p>
+            </div>
         </div>
         
+
     </div>
 </div>
