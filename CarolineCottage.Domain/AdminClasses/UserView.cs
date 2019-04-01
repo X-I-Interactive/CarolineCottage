@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarolineCottage.Repository.CarolineCottageClasses;
 using CarolineCottage.Repository.CarolineCottageDatabase;
+using AutoMapper;
 
 namespace CarolineCottage.Domain
 {
@@ -59,33 +60,31 @@ namespace CarolineCottage.Domain
         public static List<UserList> GetUserList(string connectionString)
         {
             List<UserList> userList = new List<UserList>();
-            AutoMapper.Mapper.CreateMap<User, UserList>();
+            
             using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
             {
-                userList = AutoMapper.Mapper.Map<List<User>, List<UserList>>(dbContext.Users.OrderBy(x => x.Name).ToList());
+                userList = Mapper.Map<List<User>, List<UserList>>(dbContext.Users.OrderBy(x => x.Name).ToList());
             }
             return userList;
         }
 
         public static UserView GetUserByID(int userID, string connectionString)
         {
-            AutoMapper.Mapper.CreateMap<User, UserView>();
             using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
             {
                 User user = dbContext.Users.FirstOrDefault(x => x.UserID == userID) ?? new User();
-                return AutoMapper.Mapper.Map<User, UserView>(user);
+                return Mapper.Map<User, UserView>(user);
             }
         }
 
         public bool Save(string connectionString)
         {
-            AutoMapper.Mapper.CreateMap<UserView, User>();
             using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
             {
                 DateSet = DateTime.Now;
                 Salt = PasswordUtilityFunctions.CreateSalt(6);
                 PasswordEnc = PasswordUtilityFunctions.CreatePasswordHashSHA1(Password, Salt);
-                dbContext.Entry(AutoMapper.Mapper.Map<UserView, User>(this)).State = this.UserID == 0 ? EntityState.Added : EntityState.Modified;
+                dbContext.Entry(Mapper.Map<UserView, User>(this)).State = this.UserID == 0 ? EntityState.Added : EntityState.Modified;
                 dbContext.SaveChanges();
 
             }

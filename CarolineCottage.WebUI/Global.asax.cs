@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using AutoMapper;
+using CarolineCottage.Domain;
 
 namespace CarolineCottage.WebUI
 {
@@ -19,7 +21,8 @@ namespace CarolineCottage.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-
+            AutoMapperDomainConfiguration.Configure("CarolineCottage.Domain");
+            
         }
 
         protected void Application_AuthenticateRequest()

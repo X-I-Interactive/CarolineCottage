@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarolineCottage.Repository.CarolineCottageClasses;
 using CarolineCottage.Repository.CarolineCottageDatabase;
+using AutoMapper;
 
 namespace CarolineCottage.Domain
 {
@@ -45,13 +46,11 @@ namespace CarolineCottage.Domain
 
         public void Save(string connectionString)
         {
-            AutoMapper.Mapper.CreateMap<BookingView, Booking>();
-
             try
             {
                 using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
                 {
-                    dbContext.Entry(AutoMapper.Mapper.Map<BookingView, Booking>(this)).State = EntityState.Modified;
+                    dbContext.Entry(Mapper.Map<BookingView, Booking>(this)).State = EntityState.Modified;
                     dbContext.SaveChanges();
                 }
             }
@@ -67,7 +66,7 @@ namespace CarolineCottage.Domain
             using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
             {
                 DateTime lastDate = dbContext.Bookings.Max(x => x.WeekStartDate);
-                var bookingView =  AutoMapper.Mapper.Map<Booking, BookingView>(dbContext.Bookings.FirstOrDefault(x => x.BookingID == bookingID)) ?? new BookingView();
+                var bookingView =  Mapper.Map<Booking, BookingView>(dbContext.Bookings.FirstOrDefault(x => x.BookingID == bookingID)) ?? new BookingView();
                 bookingView.IsLastRow = (lastDate - bookingView.WeekStartDate).Days == 0;
                 return bookingView;
             }
@@ -76,10 +75,7 @@ namespace CarolineCottage.Domain
         public static List<BookingView> GetCurrentBookings(string connectionString, bool addNewRows, DateTime endDateForDisplay)
         {
             DateTime nextWeek = DateTimeExtensions.NextDayOfWeek(DateTime.Now, Booking.ChangeoverDay);
-
-            AutoMapper.Mapper.CreateMap<Booking, BookingView>();
-            AutoMapper.Mapper.CreateMap<BookingView, Booking>();
-
+                        
             try
             {
                 using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
@@ -93,14 +89,14 @@ namespace CarolineCottage.Domain
                         DateTime endDate = nextWeek.AddDays(78 * 7);
                         for (DateTime weekDate = lastWeekStored.AddDays(7); (endDate - weekDate).TotalDays > 7; weekDate = weekDate.AddDays(7))
                         {
-                            dbContext.Bookings.Add(AutoMapper.Mapper.Map<BookingView, Booking>(new BookingView(weekDate)));
+                            dbContext.Bookings.Add(Mapper.Map<BookingView, Booking>(new BookingView(weekDate)));
                         }
 
                         dbContext.SaveChanges();
 
                     }
                     //  then get list
-                    List<BookingView> currentBookings = AutoMapper.Mapper.Map<IEnumerable<Booking>, List<BookingView>>(dbContext.Bookings.Where(x => x.WeekStartDate >= nextWeek));
+                    List<BookingView> currentBookings = Mapper.Map<IEnumerable<Booking>, List<BookingView>>(dbContext.Bookings.Where(x => x.WeekStartDate >= nextWeek));
 
                     if(!addNewRows)
                     {
@@ -120,8 +116,7 @@ namespace CarolineCottage.Domain
         }
 
         public static BookingView CopyLineToNextLine(int currentBookingID, string connectionString)
-        {
-            AutoMapper.Mapper.CreateMap<Booking, BookingView>();            
+        {                    
             try
             {
                 using (CarolineCottageDbContext dbContext = new CarolineCottageDbContext(connectionString))
@@ -138,7 +133,7 @@ namespace CarolineCottage.Domain
                     dbContext.SaveChanges();
 
                     DateTime lastDate = dbContext.Bookings.Max(x => x.WeekStartDate);
-                    var bookingView = AutoMapper.Mapper.Map<Booking, BookingView>(nextBooking);
+                    var bookingView = Mapper.Map<Booking, BookingView>(nextBooking);
                     bookingView.IsLastRow = (lastDate - bookingView.WeekStartDate).Days == 0;
                     return bookingView;
                 }
