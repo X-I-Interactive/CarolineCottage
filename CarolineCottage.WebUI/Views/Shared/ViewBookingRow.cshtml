@@ -32,6 +32,6 @@
         @Model.WeekStartDate.ToString("d MMM yyyy")
     </td>
     <td class="BookingStatus">@status</td>
-    <td class="WeekPrice text-right"">@String.Format("{0:£#,##0}", Model.WeekPrice)</td>
+    <td class="WeekPrice text-right">@String.Format("{0:£#,##0}", Model.WeekPrice)</td>
     <td  class="text-right">@String.Format("{0:£#,##0}", ((Model.WeekPrice / 3) / 10) * 10)</td>   
 </tr>
