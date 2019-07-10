@@ -210,7 +210,7 @@ namespace CC.WebUI.Controllers
                     using (SmtpClient smtpClient = new SmtpClient("SMTP.Livemail.co.uk"))
                     {
                         smtpClient.UseDefaultCredentials = false;
-                        smtpClient.Credentials = new NetworkCredential("caroline@pugwash.com", "ARD1329");
+                        smtpClient.Credentials = new NetworkCredential("caroline@pugwash.com", "***");
                         smtpClient.Port = 587;
                         smtpClient.Send(mail);
                     }
