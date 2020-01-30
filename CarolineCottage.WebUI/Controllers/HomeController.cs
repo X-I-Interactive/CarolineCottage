@@ -218,7 +218,7 @@ namespace CC.WebUI.Controllers
                 catch (Exception e)
                 {
 
-                    returnMessage = $"Error sending: 1: {e.Message} 2: {e.InnerException.Message}";
+                    returnMessage = $"Error sending: 1: {e.Message}";
                 }
 
                 return returnMessage;
